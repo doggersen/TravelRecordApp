@@ -1,17 +1,13 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Android.Runtime;
 using System.IO;
-using Xamarin.Essentials;
 
 namespace TravelRecordApp.Droid
 {
-    [Activity(Label = "TravelRecordApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "TravelRecordApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         //protected override async void OnCreate(Bundle savedInstanceState)
@@ -22,7 +18,7 @@ namespace TravelRecordApp.Droid
         //        var status2 = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
         //    }
         protected override void OnCreate(Bundle savedInstanceState)
-        { 
+        {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -35,7 +31,7 @@ namespace TravelRecordApp.Droid
 
             string dbName = "travel_db.sqlite";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            string fullPath = Path.Combine(folderPath, dbName); 
+            string fullPath = Path.Combine(folderPath, dbName);
 
             LoadApplication(new App(fullPath));
         }
