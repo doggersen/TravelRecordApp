@@ -33,7 +33,7 @@ namespace TravelRecordApp
             return status;
         }
 
-        protected override async void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -50,6 +50,15 @@ namespace TravelRecordApp
 
                 DisplayInMap(posts);
             }
+
+        }
+
+        protected override async void OnDisappearing()
+        {
+            base.OnDisappearing();
+            var locator = CrossGeolocator.Current;
+            locator.PositionChanged -= Locator_PositionChanged;
+            await locator.StopListeningAsync();
 
         }
 
@@ -85,12 +94,12 @@ namespace TravelRecordApp
 
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            CrossGeolocator.Current.StopListeningAsync();
-            CrossGeolocator.Current.PositionChanged -= Locator_PositionChanged;
-        }
+        //protected override void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
+        //    CrossGeolocator.Current.StopListeningAsync();
+        //    CrossGeolocator.Current.PositionChanged -= Locator_PositionChanged;
+        //}
 
         private void Locator_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
